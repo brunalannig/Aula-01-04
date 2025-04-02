@@ -1,0 +1,56 @@
+﻿@model IEnumerable<WebApplication8.Models.Pedido>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index Filtro</h1>
+<form asp-controller="Pedido" asp-action="IndexFiltro">
+    <p>
+        <select asp-items="@ViewBag.pnomecidade" name="p_nome"><option></option></select>
+
+
+        Valor: <input type="text" name="criteriobusca" />
+        <input type="submit" value="filtrar" />
+    </p>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCidade)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCidade)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPedido">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPedido">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPedido">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
